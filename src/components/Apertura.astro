@@ -61,11 +61,23 @@ const bordeLacre = `M${puntos.join(' L')} Z`;
         <circle cx="50" cy="50" r="31.5" fill="none" stroke="url(#g-oro)" stroke-width=".9" />
         <text x="50" y="66" text-anchor="middle" class="sello__inicial" fill="url(#g-oro)">D</text>
       </svg>
-      <span class="sello__texto">Abrir mi invitación</span>
+      <span class="sello__texto">
+        Abrir mi invitación
+        <!-- Manito que toca el botón una y otra vez, para que se entienda dónde tocar -->
+        <span class="manito__onda" aria-hidden="true"></span>
+        <svg class="manito" viewBox="4.5 5.5 16 18" aria-hidden="true" focusable="false">
+          <path
+            d="M18.84 15.87l-4.54-2.26c-.17-.07-.35-.11-.54-.11H13v-6c0-.83-.67-1.5-1.5-1.5S10 6.67 10 7.5v10.74l-3.43-.72c-.08-.01-.15-.03-.24-.03-.31 0-.59.13-.79.33l-.79.8 4.94 4.94c.27.27.65.44 1.06.44h6.79c.75 0 1.33-.55 1.44-1.28l.75-5.27c.01-.07.02-.14.02-.2 0-.62-.38-1.16-.91-1.38z"
+            fill="#fff"
+            stroke="#7A1347"
+            stroke-width=".7"
+            stroke-linejoin="round"></path>
+        </svg>
+      </span>
     </button>
 
     <p class="apertura__nota" id="apertura-nota">
-      {conMusica ? 'Tocá el sello · con música' : 'Tocá el sello para abrirla'}
+      {conMusica ? 'Tocá para abrirla · con música' : 'Tocá para abrirla'}
     </p>
   </div>
 </div>
