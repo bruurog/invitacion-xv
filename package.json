@@ -8,7 +8,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "og": "node scripts/generar-og.mjs",
-    "adornos": "node scripts/recortar-adornos.mjs"
+    "adornos": "node scripts/recortar-adornos.mjs",
+    "guirnalda": "node scripts/armar-guirnalda.mjs"
   },
   "dependencies": {
     "@fontsource/cinzel": "^5.3.0",

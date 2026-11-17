@@ -23,6 +23,30 @@ function revelarAlDeslizar() {
     { rootMargin: '0px 0px -8% 0px', threshold: 0.12 },
   );
   elementos.forEach((el) => observador.observe(el));
+
+  // Lo que está pegado al final de la página nunca llega a entrar del todo:
+  // al tocar fondo, se muestra todo lo que ya esté en pantalla.
+  let pendiente = false;
+  const alFondo = () => {
+    pendiente = false;
+    const fondo = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 4;
+    if (!fondo) return;
+    for (const el of elementos) {
+      if (!el.classList.contains('visible') && el.getBoundingClientRect().top < window.innerHeight) {
+        el.classList.add('visible');
+        observador.unobserve(el);
+      }
+    }
+  };
+  window.addEventListener(
+    'scroll',
+    () => {
+      if (pendiente) return;
+      pendiente = true;
+      requestAnimationFrame(alFondo);
+    },
+    { passive: true },
+  );
 }
 
 /** Pantalla de apertura: al tocar el sello arranca la música y se abre el sobre. */

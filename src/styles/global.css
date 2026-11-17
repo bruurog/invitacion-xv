@@ -347,41 +347,31 @@ a {
 
 /* Manito que toca el botón: la yema del dedo cae en (--toque-x, --toque-y) del botón */
 .sello__texto {
-  --toque-x: 80%;
-  --toque-y: 62%;
+  --toque-x: 90%;
+  --toque-y: 60%;
 }
 
 .manito {
   position: absolute;
   left: var(--toque-x);
   top: var(--toque-y);
-  width: 3.4rem;
-  height: 3.825rem;
-  /* la yema está al 43,75 % del ancho y al 2,8 % del alto del dibujo */
-  margin: -0.11rem 0 0 -1.49rem;
-  transform-origin: 43.75% 2.8%;
-  filter: drop-shadow(0 6px 8px rgba(126, 12, 64, 0.35));
+  width: 3.2rem;
+  height: 3.91rem;
+  /* la yema del dedo está al 31,1 % del ancho y al 23,6 % del alto del ícono */
+  margin: -0.92rem 0 0 -1rem;
+  transform-origin: 31.1% 23.6%;
+  overflow: visible;
   pointer-events: none;
   animation: manito 2.6s ease-in-out infinite;
 }
 
-.manito__onda {
-  position: absolute;
-  left: var(--toque-x);
-  top: var(--toque-y);
-  width: 2.6rem;
-  height: 2.6rem;
-  margin: -1.3rem 0 0 -1.3rem;
-  border-radius: 50%;
-  border: 2px solid rgba(184, 21, 95, 0.65);
-  background: rgba(255, 255, 255, 0.35);
+/* Las rayitas de "clic" se encienden en el momento del toque */
+.manito__rayos {
   opacity: 0;
-  pointer-events: none;
-  animation: toque 2.6s ease-out infinite;
+  animation: rayos 2.6s ease-out infinite;
 }
 
-.abriendo .manito,
-.abriendo .manito__onda {
+.abriendo .manito {
   visibility: hidden;
 }
 
@@ -1028,7 +1018,8 @@ a {
 /* Cierre */
 .cierre {
   position: relative;
-  padding: 2.5rem 1.5rem clamp(13rem, 62vw, 15rem);
+  /* deja lugar para la guirnalda (≈38 % del ancho de alto; su parte de arriba es difuminado) */
+  padding: 2.5rem 1.5rem calc(29% + 1.2rem);
   text-align: center;
 }
 
@@ -1056,17 +1047,12 @@ a {
   font-size: 0.68rem;
 }
 
-.cierre__rosa {
+/* Un poco más ancha que la columna: las flores se ven más grandes y los costados se recortan */
+.cierre__guirnalda {
+  left: -12.5%;
   bottom: 0;
-  width: 32%;
-}
-
-.cierre__rosa--izq {
-  left: 0;
-}
-
-.cierre__rosa--der {
-  right: 0;
+  width: 125%;
+  max-width: none;
 }
 
 /* ── Botón de música ────────────────────────────────────────── */
@@ -1353,7 +1339,7 @@ html.abierta .portada * {
 
 /* Brote: las rosas crecen desde abajo */
 .js [data-revelar='brote'] {
-  transform: translateY(30px) scale(0.86);
+  transform: scale(0.92);
   transform-origin: 50% 100%;
   transition:
     opacity 1.2s var(--suave) var(--retraso, 0s),
@@ -1382,33 +1368,32 @@ html.abierta .portada * {
 @keyframes manito {
   0%,
   100% {
-    transform: translate(16px, 20px) rotate(-12deg) scale(1);
+    transform: translate(10px, 14px);
   }
   30% {
-    transform: translate(0, 0) rotate(-12deg) scale(1);
+    transform: translate(0, 0) scale(1);
   }
   38% {
-    transform: translate(0, 2px) rotate(-12deg) scale(0.84);
+    transform: translate(0, 2px) scale(0.9);
   }
   48%,
   72% {
-    transform: translate(0, 0) rotate(-12deg) scale(1);
+    transform: translate(0, 0) scale(1);
   }
 }
 
-@keyframes toque {
+@keyframes rayos {
   0%,
-  36% {
+  35% {
     opacity: 0;
-    transform: scale(0.2);
   }
-  40% {
+  40%,
+  62% {
     opacity: 1;
   }
-  80%,
+  74%,
   100% {
     opacity: 0;
-    transform: scale(1.7);
   }
 }
 

@@ -1,7 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import rosaIzq from '../assets/adornos/rosa-inf-izq.webp';
-import rosaDer from '../assets/adornos/rosa-inf-der.webp';
+import guirnalda from '../assets/adornos/guirnalda.webp';
 import Separador from './Separador.astro';
 import { evento } from '../config';
 
@@ -21,14 +20,14 @@ const fecha = new Intl.DateTimeFormat('es-AR', {
   <p class="cierre__firma caligrafia" data-revelar="escritura" style="--retraso: .4s">{evento.quinceanera}</p>
   <p class="eyebrow cierre__fecha" data-revelar style="--retraso: .9s">XV · {fecha}</p>
 
-  <Image src={rosaIzq} alt="" class="adorno cierre__rosa cierre__rosa--izq" width={300} loading="lazy" data-revelar="brote" />
+  <!-- Guirnalda de rosas y flores de cerezo a lo ancho del final -->
   <Image
-    src={rosaDer}
+    src={guirnalda}
     alt=""
-    class="adorno cierre__rosa cierre__rosa--der"
-    width={300}
+    class="adorno cierre__guirnalda"
+    widths={[760, 1140, 1520]}
+    sizes="(min-width: 34rem) 34rem, 100vw"
     loading="lazy"
     data-revelar="brote"
-    style="--retraso: .2s"
   />
 </footer>
