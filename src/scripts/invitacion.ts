@@ -1,5 +1,6 @@
 import { prepararMusica } from './musica';
 import { iniciarCuentaRegresiva } from './cuenta-regresiva';
+import { iniciarParallax } from './parallax';
 
 const sinMovimiento = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -68,4 +69,5 @@ export function iniciarInvitacion() {
   prepararApertura(musica);
   iniciarCuentaRegresiva();
   revelarAlDeslizar();
+  iniciarParallax();
 }

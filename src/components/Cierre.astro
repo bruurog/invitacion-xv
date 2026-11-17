@@ -16,11 +16,19 @@ const fecha = new Intl.DateTimeFormat('es-AR', {
 ---
 
 <footer class="cierre">
-  <p class="cierre__frase" data-revelar>{evento.cierre}</p>
+  <p class="cierre__frase" data-revelar="escritura">{evento.cierre}</p>
   <Separador class="cierre__separador" />
-  <p class="cierre__firma caligrafia" data-revelar style="--retraso: .15s">{evento.quinceanera}</p>
-  <p class="eyebrow cierre__fecha" data-revelar style="--retraso: .25s">XV · {fecha}</p>
+  <p class="cierre__firma caligrafia" data-revelar="escritura" style="--retraso: .4s">{evento.quinceanera}</p>
+  <p class="eyebrow cierre__fecha" data-revelar style="--retraso: .9s">XV · {fecha}</p>
 
-  <Image src={rosaIzq} alt="" class="adorno cierre__rosa cierre__rosa--izq" width={300} loading="lazy" />
-  <Image src={rosaDer} alt="" class="adorno cierre__rosa cierre__rosa--der" width={300} loading="lazy" />
+  <Image src={rosaIzq} alt="" class="adorno cierre__rosa cierre__rosa--izq" width={300} loading="lazy" data-revelar="brote" />
+  <Image
+    src={rosaDer}
+    alt=""
+    class="adorno cierre__rosa cierre__rosa--der"
+    width={300}
+    loading="lazy"
+    data-revelar="brote"
+    style="--retraso: .2s"
+  />
 </footer>

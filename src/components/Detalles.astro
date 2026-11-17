@@ -12,8 +12,8 @@ const mapsUrl =
 ---
 
 <section class="seccion detalles" aria-labelledby="detalles-titulo">
-  <Image src={ramaIzq} alt="" class="adorno detalles__rama detalles__rama--izq" width={236} loading="lazy" />
-  <Image src={ramaDer} alt="" class="adorno detalles__rama detalles__rama--der" width={236} loading="lazy" />
+  <Image src={ramaIzq} alt="" class="adorno detalles__rama detalles__rama--izq" width={236} loading="lazy" data-parallax="-0.18" />
+  <Image src={ramaDer} alt="" class="adorno detalles__rama detalles__rama--der" width={236} loading="lazy" data-parallax="0.14" />
 
   <h2 class="sr-only" id="detalles-titulo">Hora y lugar</h2>
   <div class="detalles__grilla">
@@ -21,10 +21,10 @@ const mapsUrl =
       <span class="detalle__icono"><Icono nombre="reloj" /></span>
       <p class="eyebrow">Hora</p>
       <p class="detalle__dato">{evento.hora}</p>
-      <p class="detalle__nota">{evento.notaHora}</p>
+      <p class="detalle__nota" data-revelar="escritura" style="--retraso: .5s">{evento.notaHora}</p>
     </div>
 
-    <span class="detalles__linea" aria-hidden="true"></span>
+    <span class="detalles__linea" aria-hidden="true" data-revelar="linea" style="--retraso: .1s"></span>
 
     <div class="detalle" data-revelar style="--retraso: .15s">
       <span class="detalle__icono"><Icono nombre="pin" /></span>

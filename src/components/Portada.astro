@@ -25,11 +25,12 @@ import { evento } from '../config';
       fetchpriority="high"
       fallbackFormat="webp"
       class="portada__img"
+      pictureAttributes={{ 'data-parallax': '0.3', 'data-parallax-desvanecer': '' }}
     />
-    <Image src={ramaIzq} alt="" class="adorno portada__rama portada__rama--izq" width={250} loading="eager" />
-    <Image src={ramaDer} alt="" class="adorno portada__rama portada__rama--der" width={256} loading="eager" />
-    <Image src={mariposaDer} alt="" class="adorno mariposa portada__mariposa--der" width={280} loading="eager" />
-    <Image src={mariposaIzq} alt="" class="adorno mariposa portada__mariposa--izq" width={304} loading="eager" />
+    <Image src={ramaIzq} alt="" class="adorno portada__rama portada__rama--izq" width={250} loading="eager" data-parallax="-0.1" />
+    <Image src={ramaDer} alt="" class="adorno portada__rama portada__rama--der" width={256} loading="eager" data-parallax="-0.16" />
+    <Image src={mariposaDer} alt="" class="adorno mariposa portada__mariposa--der" width={280} loading="eager" data-parallax="-0.32" />
+    <Image src={mariposaIzq} alt="" class="adorno mariposa portada__mariposa--izq" width={304} loading="eager" data-parallax="-0.22" />
     <Destellos
       puntos={[
         [10, 8, 12],
@@ -43,7 +44,7 @@ import { evento } from '../config';
     />
   </div>
 
-  <div class="portada__titulo">
+  <div class="portada__titulo" data-parallax="0.1">
     <Image src={corona} alt="" class="portada__corona" width={420} loading="eager" />
     <h1 class="titulo-principal">
       <span class="nombre caligrafia" id="nombre">

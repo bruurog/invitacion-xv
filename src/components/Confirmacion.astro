@@ -8,10 +8,19 @@ const enlace = numero ? `https://wa.me/${numero}?text=${encodeURIComponent(confi
 if (!numero) {
   console.warn('[invitacion] Falta el número de WhatsApp en src/config.ts: el botón de confirmar no se muestra.');
 }
+
+// Corazoncitos que suben desde el botón: posición, deriva, giro, demora, tamaño y color
+const corazones = [
+  { x: 10, dx: -12, giro: -22, demora: 0, tam: 13, color: '#E4589D' },
+  { x: 28, dx: 8, giro: 16, demora: 0.8, tam: 17, color: '#F5B9CB' },
+  { x: 50, dx: -6, giro: -10, demora: 1.6, tam: 12, color: '#C9A45C' },
+  { x: 70, dx: 12, giro: 24, demora: 2.3, tam: 16, color: '#D23A84' },
+  { x: 88, dx: -8, giro: -16, demora: 3, tam: 13, color: '#F08DB4' },
+];
 ---
 
 <section class="seccion confirmacion" aria-labelledby="confirmacion-titulo">
-  <h2 class="pincel" id="confirmacion-titulo" data-revelar>
+  <h2 class="pincel" id="confirmacion-titulo" data-revelar="escritura">
     <svg class="pincel__fondo" viewBox="0 0 320 84" aria-hidden="true" focusable="false" preserveAspectRatio="none">
       <path
         d="M16 28 C70 18 150 20 300 15 L314 20 L302 25 L318 31 C304 50 232 60 160 62 C100 64 52 67 20 61 L6 55 L17 49 L3 42 L15 36 Z"
@@ -23,15 +32,32 @@ if (!numero) {
     <span class="pincel__texto">Confirmar asistencia</span>
   </h2>
 
-  <p class="confirmacion__texto" data-revelar style="--retraso: .1s">{confirmacion.texto}</p>
-  <p class="confirmacion__pregunta" data-revelar style="--retraso: .2s">{confirmacion.pregunta}</p>
+  <p class="confirmacion__texto" data-revelar="enfoque" style="--retraso: .2s">{confirmacion.texto}</p>
+  <p class="confirmacion__pregunta" data-revelar="escritura" style="--retraso: .35s">{confirmacion.pregunta}</p>
 
   {
     enlace ? (
-      <a class="boton-whatsapp" href={enlace} target="_blank" rel="noopener" data-revelar style="--retraso: .3s">
-        <Icono nombre="whatsapp" />
-        <span>Confirmar asistencia por WhatsApp</span>
-      </a>
+      <div class="cta" data-revelar="pop" style="--retraso: .5s">
+        <span class="cta__halo" aria-hidden="true" />
+        <span class="cta__corazones" aria-hidden="true">
+          {corazones.map((c) => (
+            <svg
+              class="cta__corazon"
+              viewBox="0 0 20 18"
+              style={`--x:${c.x}%;--dx:${c.dx}px;--giro:${c.giro}deg;--demora:${c.demora}s;--tam:${c.tam}px`}
+            >
+              <path
+                d="M10 17C4 12.5 1 9.5 1 6c0-2.8 2.2-5 4.8-5C7.6 1 9 2 10 3.6 11 2 12.4 1 14.2 1 16.8 1 19 3.2 19 6c0 3.5-3 6.5-9 11Z"
+                fill={c.color}
+              />
+            </svg>
+          ))}
+        </span>
+        <a class="boton-whatsapp" href={enlace} target="_blank" rel="noopener">
+          <Icono nombre="whatsapp" />
+          <span>Confirmar asistencia por WhatsApp</span>
+        </a>
+      </div>
     ) : (
       <p class="confirmacion__pronto" data-revelar style="--retraso: .3s">
         Muy pronto vas a poder confirmar desde acá.

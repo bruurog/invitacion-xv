@@ -22,11 +22,11 @@ export const evento = {
 
   lugar: {
     nombre: 'Centro de Jubilados de Verónica',
-    // PENDIENTE: calle y número. Ej.: 'Calle 12 N° 345, Verónica'
+    // Opcional: calle y número, se muestra debajo del nombre. Ej.: 'Calle 12 N° 345, Verónica'
     direccion: '',
-    // PENDIENTE: link de Google Maps (Compartir → Copiar vínculo).
+    // Link de Google Maps (en la app: Compartir → Copiar vínculo).
     // Si queda vacío, "Cómo llegar" busca el nombre del lugar en Google Maps.
-    mapsUrl: '',
+    mapsUrl: 'https://maps.app.goo.gl/bGDmL6aABj9MAS7B6',
   },
 };
 
@@ -36,7 +36,7 @@ export const confirmacion = {
   // Se puede escribir con espacios o guiones: se usan solo los dígitos.
   whatsapp: '+54 9 11 4034-7959',
   mensaje:
-    '¡Hola! 💗 Quiero confirmar mi asistencia a los XV de Delfina. Mi nombre es [Nombre]. ¡Muchas gracias por la invitación!',
+    '¡Hola! 💗 Quiero confirmar mi asistencia a los XV de Delfina. ¡Muchas gracias por la invitación!',
   texto:
     'Los momentos más lindos se viven con personas especiales. Me encantaría que seas parte de esta noche inolvidable.',
   pregunta: '¿Me acompañás?',
@@ -51,7 +51,7 @@ export const extras: { titulo: string; texto: string }[] = [];
 export const musica = {
   // Copiá el archivo en public/musica/ con este nombre.
   // Si el archivo no existe, la invitación funciona igual, sin botón de música.
-  archivo: '/musica/cancion.mp3',
+  archivo: '/musica/a-thousand-years.mp3',
   titulo: 'A Thousand Years · Christina Perri',
   volumen: 0.75,
 };

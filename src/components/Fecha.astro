@@ -21,27 +21,42 @@ const unidades = [
 
 <section class="seccion fecha" aria-labelledby="fecha-titulo">
   <p class="eyebrow" data-revelar>{diaSemana}</p>
-  <h2 class="fecha__dia" id="fecha-titulo" data-revelar style="--retraso: .1s">
+  <h2 class="fecha__dia" id="fecha-titulo" data-revelar="escritura" style="--retraso: .1s">
     {dia} de {mes}
     <span class="sr-only"> de {anio}</span>
   </h2>
-  <svg class="fecha__trazo" viewBox="0 0 260 28" aria-hidden="true" focusable="false" data-revelar style="--retraso: .2s">
+  <svg class="fecha__trazo" viewBox="0 0 260 28" aria-hidden="true" focusable="false" data-revelar="dibujo" style="--retraso: .9s">
     <path
+      pathLength="1"
       d="M8 17 C56 9 104 24 150 15 C186 8 214 9 236 14 C244 16 250 13 252 9"
       fill="none"
       stroke="url(#g-oro)"
       stroke-width="1.6"
       stroke-linecap="round"></path>
-    <path d="M118 21 C128 25 140 25 150 21" fill="none" stroke="url(#g-oro)" stroke-width="1" stroke-linecap="round"></path>
+    <path
+      pathLength="1"
+      d="M118 21 C128 25 140 25 150 21"
+      fill="none"
+      stroke="url(#g-oro)"
+      stroke-width="1"
+      stroke-linecap="round"></path>
   </svg>
   <p class="eyebrow fecha__anio" aria-hidden="true" data-revelar style="--retraso: .25s">{anio}</p>
 
-  <div class="cuenta" data-revelar style="--retraso: .3s">
-    <p class="cuenta__titulo">Faltan</p>
-    <div class="cuenta__fila" role="timer" aria-live="off" aria-label="Tiempo que falta para la fiesta" data-cuenta={evento.fechaISO}>
+  <div class="cuenta">
+    <p class="cuenta__titulo" data-revelar>Faltan</p>
+    <div
+      class="cuenta__fila"
+      role="timer"
+      aria-live="off"
+      aria-label="Tiempo que falta para la fiesta"
+      data-cuenta={evento.fechaISO}
+      data-revelar="escalonado"
+      style="--retraso: .15s"
+    >
       {
-        unidades.map((u) => (
-          <div class="cuenta__unidad">
+        unidades.map((u, i) => (
+          <div class="cuenta__unidad" style={`--i: ${i}`}>
             <span class="cuenta__num" data-unidad={u.clave}>
               --
             </span>

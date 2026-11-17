@@ -20,8 +20,10 @@ Después de cambiar algo, se guarda, se sube a GitHub y Vercel publica la nueva 
 
 ### Música
 
-1. Copiá el archivo en `public/musica/cancion.mp3` (MP3 de 128 kbps alcanza; idealmente menos de 4 MB).
-2. Si querés otro nombre, cambiá `musica.archivo` en `src/config.ts`.
+La canción está en `public/musica/a-thousand-years.mp3`. Para cambiarla:
+
+1. Copiá el archivo nuevo en `public/musica/`, con un nombre sin espacios ni corchetes (por ejemplo `cancion.mp3`).
+2. Poné ese nombre en `musica.archivo` en `src/config.ts`.
 
 Si el archivo no está, la invitación se publica igual, sin botón de música.
 
