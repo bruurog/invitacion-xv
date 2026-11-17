@@ -1,0 +1,26 @@
+---
+import { Image } from 'astro:assets';
+import rosaIzq from '../assets/adornos/rosa-inf-izq.webp';
+import rosaDer from '../assets/adornos/rosa-inf-der.webp';
+import Separador from './Separador.astro';
+import { evento } from '../config';
+
+const fecha = new Intl.DateTimeFormat('es-AR', {
+  timeZone: 'America/Argentina/Buenos_Aires',
+  day: '2-digit',
+  month: '2-digit',
+  year: 'numeric',
+})
+  .format(new Date(evento.fechaISO))
+  .replaceAll('/', ' · ');
+---
+
+<footer class="cierre">
+  <p class="cierre__frase" data-revelar>{evento.cierre}</p>
+  <Separador class="cierre__separador" />
+  <p class="cierre__firma caligrafia" data-revelar style="--retraso: .15s">{evento.quinceanera}</p>
+  <p class="eyebrow cierre__fecha" data-revelar style="--retraso: .25s">XV · {fecha}</p>
+
+  <Image src={rosaIzq} alt="" class="adorno cierre__rosa cierre__rosa--izq" width={300} loading="lazy" />
+  <Image src={rosaDer} alt="" class="adorno cierre__rosa cierre__rosa--der" width={300} loading="lazy" />
+</footer>

@@ -1,0 +1,22 @@
+---
+// Destellos de luz de cuatro puntas que titilan muy despacio.
+// Las posiciones son fijas para que el diseño sea siempre el mismo.
+interface Props {
+  puntos: [x: number, y: number, tam: number][];
+}
+const { puntos } = Astro.props;
+---
+
+<div class="destellos" aria-hidden="true">
+  {
+    puntos.map(([x, y, tam], i) => (
+      <svg
+        class="destello"
+        viewBox="0 0 20 20"
+        style={`left:${x}%;top:${y}%;width:${tam}px;--retraso:${(i * 0.73) % 4}s;--duracion:${3.2 + ((i * 1.31) % 2.4)}s`}
+      >
+        <path d="M10 0 C10.8 7 13 9.2 20 10 C13 10.8 10.8 13 10 20 C9.2 13 7 10.8 0 10 C7 9.2 9.2 7 10 0 Z" fill="#fff" />
+      </svg>
+    ))
+  }
+</div>

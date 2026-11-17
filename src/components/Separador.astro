@@ -1,0 +1,21 @@
+---
+// Filete dorado con un corazón al centro, como en la invitación impresa.
+// Las líneas son rectángulos finos: un degradado no se pinta sobre una línea sin alto.
+interface Props {
+  class?: string;
+}
+const { class: clase = '' } = Astro.props;
+---
+
+<svg class={`separador ${clase}`} viewBox="0 0 300 24" aria-hidden="true" focusable="false">
+  <rect x="8" y="11.9" width="126" height="1.2" fill="url(#g-linea-izq)" />
+  <rect x="166" y="11.9" width="126" height="1.2" fill="url(#g-linea-der)" />
+  <circle cx="138.5" cy="12.5" r="1.3" fill="#C9A45C" />
+  <circle cx="161.5" cy="12.5" r="1.3" fill="#C9A45C" />
+  <path
+    d="M150 20.5 C144 16 140.6 12.6 140.6 9.2 C140.6 6.6 142.6 4.8 145 4.8 C147 4.8 148.6 6 150 8 C151.4 6 153 4.8 155 4.8 C157.4 4.8 159.4 6.6 159.4 9.2 C159.4 12.6 156 16 150 20.5 Z"
+    fill="none"
+    stroke="url(#g-oro)"
+    stroke-width="1.4"
+    stroke-linejoin="round"></path>
+</svg>

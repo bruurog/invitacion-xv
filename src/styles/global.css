@@ -1,0 +1,1315 @@
+/* ─────────────────────────────────────────────────────────────
+   Invitación XV · Delfina
+   Paleta y tipografías tomadas de la invitación impresa.
+   ───────────────────────────────────────────────────────────── */
+
+:root {
+  --niebla: #fff4f6;
+  --empolvado: #fbdde3;
+  --petalo: #f5b9cb;
+  --fucsia: #b8155f;
+  --fucsia-hondo: #9e0f50;
+  --ciruela: #7a1347;
+  --oro: #c9a45c;
+  --oro-luz: #f1dda5;
+  --tinta: #3d2b31;
+  --tinta-suave: #6b4f58;
+
+  --f-nombre: 'Great Vibes', 'Brush Script MT', cursive;
+  --f-script: 'Playball', 'Brush Script MT', cursive;
+  --f-mayus: 'Cinzel', 'Trajan Pro', Georgia, serif;
+  --f-texto: 'Cormorant Garamond', 'Palatino Linotype', Palatino, Georgia, serif;
+
+  --suave: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --columna: 34rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  background: var(--empolvado);
+}
+
+body {
+  margin: 0;
+  min-height: 100svh;
+  color: var(--tinta);
+  font-family: var(--f-texto);
+  font-weight: 500;
+  font-size: 1.2rem;
+  line-height: 1.5;
+  font-variant-numeric: lining-nums;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+  background: transparent;
+}
+
+/* Fondo: rosa empolvado con luz y bokeh, fijo detrás de todo */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 12% 16%, rgba(255, 255, 255, 0.75) 0, rgba(255, 255, 255, 0) 1.4rem),
+    radial-gradient(circle at 86% 9%, rgba(255, 255, 255, 0.6) 0, rgba(255, 255, 255, 0) 2.2rem),
+    radial-gradient(circle at 78% 58%, rgba(255, 255, 255, 0.45) 0, rgba(255, 255, 255, 0) 1.8rem),
+    radial-gradient(circle at 8% 74%, rgba(255, 255, 255, 0.5) 0, rgba(255, 255, 255, 0) 2.6rem),
+    radial-gradient(circle at 40% 92%, rgba(255, 255, 255, 0.4) 0, rgba(255, 255, 255, 0) 1.6rem),
+    radial-gradient(120% 60% at 50% 0%, var(--niebla) 0%, rgba(255, 244, 246, 0) 70%),
+    linear-gradient(180deg, #fdebef 0%, #fbdde3 48%, #f8d1da 100%);
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+p,
+h1,
+h2 {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--fucsia);
+  outline-offset: 4px;
+  border-radius: 6px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.defs {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.adorno {
+  position: absolute;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Rótulo chico en mayúsculas: encabeza un dato */
+.eyebrow {
+  font-family: var(--f-mayus);
+  font-weight: 600;
+  font-size: 0.74rem;
+  letter-spacing: 0.32em;
+  padding-left: 0.32em;
+  text-transform: uppercase;
+  color: var(--ciruela);
+}
+
+.separador {
+  width: min(72%, 17rem);
+  height: auto;
+  margin-inline: auto;
+}
+
+/* Caligrafía con brillo: el nombre en fucsia con purpurina, como el impreso */
+.caligrafia {
+  font-family: var(--f-nombre);
+  font-weight: 400;
+  line-height: 1;
+  color: var(--fucsia);
+  background-image:
+    radial-gradient(circle at 30% 40%, rgba(255, 255, 255, 0.5) 0 0.3px, rgba(255, 255, 255, 0) 0.75px),
+    radial-gradient(circle at 70% 70%, rgba(255, 214, 232, 0.4) 0 0.3px, rgba(255, 214, 232, 0) 0.7px),
+    linear-gradient(
+      100deg,
+      #8e0c49 0%,
+      #b8155f 30%,
+      #de5797 44%,
+      #f7b3cf 50%,
+      #de5797 56%,
+      #b8155f 70%,
+      #8e0c49 100%
+    );
+  background-size:
+    5px 5px,
+    7px 7px,
+    320% 100%;
+  background-position:
+    0 0,
+    3px 2px,
+    100% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 1.5px 0 rgba(255, 255, 255, 0.9)) drop-shadow(0 8px 16px rgba(158, 15, 80, 0.2));
+}
+
+/* ── Pantalla de apertura ───────────────────────────────────── */
+
+.apertura {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: none;
+  place-items: center;
+  overflow: hidden;
+  touch-action: none;
+  overscroll-behavior: contain;
+}
+
+.js.cerrada .apertura {
+  display: grid;
+}
+
+.cerrada body {
+  overflow: hidden;
+}
+
+.apertura__hoja {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  background:
+    radial-gradient(55% 40% at 50% 45%, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0) 72%),
+    radial-gradient(circle at 14% 18%, rgba(255, 255, 255, 0.8) 0, rgba(255, 255, 255, 0) 1.8rem),
+    radial-gradient(circle at 88% 12%, rgba(255, 255, 255, 0.7) 0, rgba(255, 255, 255, 0) 2.4rem),
+    radial-gradient(circle at 82% 78%, rgba(255, 255, 255, 0.55) 0, rgba(255, 255, 255, 0) 2rem),
+    radial-gradient(circle at 10% 86%, rgba(255, 255, 255, 0.6) 0, rgba(255, 255, 255, 0) 2.8rem),
+    linear-gradient(180deg, #fdecf0 0%, #f9d4dd 58%, #f4c2cf 100%);
+  background-size: 100vw 100%;
+  transition: transform 1.35s cubic-bezier(0.72, 0, 0.18, 1) 0.5s;
+  will-change: transform;
+}
+
+.apertura__hoja--izq {
+  left: 0;
+  background-position: left top;
+}
+
+.apertura__hoja--der {
+  right: 0;
+  background-position: right top;
+}
+
+/* La unión de las dos hojas: un hilo dorado que asoma arriba y abajo */
+.apertura__hoja--izq::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 1px;
+  background: linear-gradient(
+    180deg,
+    rgba(201, 164, 92, 0) 0%,
+    rgba(201, 164, 92, 0.7) 8%,
+    rgba(201, 164, 92, 0) 24%,
+    rgba(201, 164, 92, 0) 80%,
+    rgba(201, 164, 92, 0.7) 93%,
+    rgba(201, 164, 92, 0) 100%
+  );
+}
+
+.abriendo .apertura__hoja--izq {
+  transform: translateX(-101%);
+}
+
+.abriendo .apertura__hoja--der {
+  transform: translateX(101%);
+}
+
+.apertura__contenido {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: min(100%, 26rem);
+  padding: 2rem 1.5rem;
+  text-align: center;
+  transition:
+    opacity 0.55s ease,
+    transform 0.7s ease;
+}
+
+.abriendo .apertura__contenido {
+  opacity: 0;
+  transform: translateY(-14px) scale(1.02);
+}
+
+.apertura__contenido .destellos {
+  inset: -20% -10%;
+}
+
+.apertura__aviso {
+  font-family: var(--f-texto);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--tinta-suave);
+  margin-bottom: 1.4rem;
+}
+
+.apertura__corona {
+  width: 7.2rem;
+  height: auto;
+  margin-bottom: -0.2rem;
+}
+
+.apertura__nombre {
+  font-size: clamp(4.4rem, 23vw, 5.6rem);
+  padding: 0.1em 0.35em 0.22em;
+}
+
+.apertura__xv {
+  font-family: var(--f-mayus);
+  font-weight: 600;
+  font-size: 1.2rem;
+  letter-spacing: 0.24em;
+  padding-left: 0.24em;
+  text-transform: uppercase;
+  color: var(--ciruela);
+  margin-top: -0.2rem;
+}
+
+.apertura__separador {
+  width: 12rem;
+  margin: 0.9rem auto 1.8rem;
+}
+
+.sello {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.4rem;
+  border: 0;
+  background: none;
+  color: var(--ciruela);
+  font: inherit;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  border-radius: 1.5rem;
+}
+
+.sello__cera {
+  width: 6.2rem;
+  height: 6.2rem;
+  filter: drop-shadow(0 10px 14px rgba(126, 12, 64, 0.32));
+  animation: latido 2.8s ease-in-out infinite;
+  transition: transform 0.4s var(--suave);
+}
+
+.sello__inicial {
+  font-family: var(--f-nombre);
+  font-size: 50px;
+}
+
+.sello__texto {
+  font-family: var(--f-mayus);
+  font-weight: 600;
+  font-size: 0.82rem;
+  letter-spacing: 0.2em;
+  padding: 0.8rem 1.3rem 0.8rem 1.5rem;
+  text-transform: uppercase;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow:
+    inset 0 0 0 1px var(--oro),
+    0 8px 20px -10px rgba(126, 12, 64, 0.4);
+  transition: background-color 0.3s ease;
+}
+
+.sello:focus-visible {
+  outline: none;
+}
+
+.sello:focus-visible .sello__texto {
+  outline: 2px solid var(--fucsia);
+  outline-offset: 3px;
+}
+
+@media (hover: hover) {
+  .sello:hover .sello__cera {
+    transform: scale(1.05) rotate(-4deg);
+  }
+  .sello:hover .sello__texto {
+    background: #fff;
+  }
+}
+
+.abriendo .sello__cera {
+  animation: romper 0.5s ease forwards;
+}
+
+.apertura__nota {
+  margin-top: 1.1rem;
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--tinta-suave);
+}
+
+/* ── Columna de la invitación ───────────────────────────────── */
+
+.invitacion {
+  position: relative;
+  width: min(100%, var(--columna));
+  margin-inline: auto;
+  overflow: clip;
+}
+
+/* ── Portada ────────────────────────────────────────────────── */
+
+.portada {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
+  padding-bottom: 1.6rem;
+  text-align: center;
+}
+
+.portada__foto {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1086 / 1448;
+  max-height: 74svh;
+  margin-inline: auto;
+}
+
+.portada__foto picture {
+  display: block;
+  position: relative;
+  z-index: 1;
+  height: 100%;
+}
+
+.portada__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  --fundido-v: linear-gradient(180deg, #000 52%, rgba(0, 0, 0, 0) 94%);
+  --fundido-h: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, #000 7%, #000 93%, rgba(0, 0, 0, 0) 100%);
+  -webkit-mask-image: var(--fundido-v), var(--fundido-h);
+  -webkit-mask-composite: source-in;
+  mask-image: var(--fundido-v), var(--fundido-h);
+  mask-composite: intersect;
+}
+
+.portada__halo {
+  position: absolute;
+  inset: 4% -10% 18%;
+  z-index: 0;
+  background: radial-gradient(
+    closest-side,
+    rgba(255, 255, 255, 0.95),
+    rgba(255, 238, 244, 0.6) 50%,
+    rgba(255, 238, 244, 0) 100%
+  );
+}
+
+.portada__foto .destellos {
+  z-index: 3;
+}
+
+.portada__rama,
+.mariposa {
+  z-index: 2;
+}
+
+.portada__rama--izq {
+  left: 0;
+  top: 0;
+  width: 25%;
+}
+
+.portada__rama--der {
+  right: 0;
+  top: 14%;
+  width: 25%;
+}
+
+.portada__mariposa--der {
+  right: 1%;
+  top: 0;
+  width: 25%;
+}
+
+.portada__mariposa--izq {
+  left: -1%;
+  top: 50%;
+  width: 26%;
+  animation-delay: -3s;
+}
+
+.portada__titulo {
+  position: relative;
+  z-index: 4;
+  margin-top: -24%;
+  padding-inline: 1rem;
+}
+
+.portada__corona {
+  width: min(34%, 10rem);
+  height: auto;
+  margin: 0 auto -0.4rem;
+}
+
+.titulo-principal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-weight: 400;
+}
+
+.titulo-principal:focus {
+  outline: none;
+}
+
+.nombre {
+  position: relative;
+  display: inline-block;
+  font-size: clamp(4.7rem, 25vw, 7.2rem);
+  padding: 0.1em 0.48em 0.24em 0.32em;
+  margin-right: -0.16em;
+}
+
+.nombre__corazon {
+  position: absolute;
+  right: 0.02em;
+  bottom: 0.3em;
+  width: 0.6em;
+  height: auto;
+  overflow: visible;
+}
+
+.nombre__corazon path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+}
+
+.xv {
+  display: block;
+  font-family: var(--f-mayus);
+  font-weight: 600;
+  font-size: clamp(1.3rem, 6.4vw, 1.8rem);
+  letter-spacing: 0.2em;
+  padding-left: 0.2em;
+  text-transform: uppercase;
+  color: var(--ciruela);
+  margin-top: -0.35em;
+}
+
+.portada__separador {
+  margin-top: 0.9rem;
+}
+
+.portada__seguir {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1rem;
+  margin: auto auto 0;
+  padding: 1.6rem 1rem 0.4rem;
+  font-family: var(--f-mayus);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  padding-left: calc(1rem + 0.3em);
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--ciruela);
+  opacity: 0.75;
+}
+
+.portada__seguir .icono {
+  width: 1.3rem;
+  height: 1.3rem;
+  animation: bajar 2.4s ease-in-out infinite;
+}
+
+/* ── Secciones ──────────────────────────────────────────────── */
+
+.seccion {
+  position: relative;
+  padding: clamp(3.5rem, 14vw, 5.5rem) 1.5rem;
+  text-align: center;
+}
+
+.frase__principal {
+  max-width: 19ch;
+  margin-inline: auto;
+  font-size: clamp(1.6rem, 6.8vw, 2rem);
+  line-height: 1.25;
+  font-weight: 500;
+  text-wrap: balance;
+}
+
+.frase__separador {
+  margin: 1.6rem auto;
+}
+
+.frase__secundaria {
+  max-width: 25ch;
+  margin-inline: auto;
+  font-style: italic;
+  font-size: 1.25rem;
+  line-height: 1.45;
+  color: var(--tinta-suave);
+  text-wrap: balance;
+}
+
+/* Fecha y cuenta regresiva */
+.fecha__dia {
+  margin-top: 0.3rem;
+  font-family: var(--f-script);
+  font-weight: 400;
+  font-size: clamp(3.2rem, 15.5vw, 4.3rem);
+  line-height: 1.1;
+  color: var(--fucsia);
+  text-shadow:
+    0 1.5px 0 rgba(255, 255, 255, 0.85),
+    0 8px 18px rgba(158, 15, 80, 0.18);
+}
+
+.fecha__trazo {
+  width: min(66%, 15rem);
+  height: auto;
+  margin: -0.1rem auto 0.5rem;
+}
+
+.cuenta {
+  margin-top: 2.6rem;
+}
+
+.cuenta__titulo {
+  font-family: var(--f-script);
+  font-size: 1.7rem;
+  color: var(--ciruela);
+  margin-bottom: 1rem;
+}
+
+.cuenta__fila {
+  display: flex;
+  justify-content: center;
+  gap: clamp(0.45rem, 2.6vw, 1rem);
+}
+
+.cuenta__fila[hidden] {
+  display: none;
+}
+
+.cuenta__unidad {
+  display: grid;
+  place-content: center;
+  width: clamp(4.1rem, 19vw, 5.2rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.35) 75%);
+  box-shadow:
+    inset 0 0 0 1px rgba(201, 164, 92, 0.85),
+    inset 0 0 0 4px rgba(255, 255, 255, 0.55),
+    inset 0 0 0 5px rgba(201, 164, 92, 0.35),
+    0 10px 22px -12px rgba(158, 15, 80, 0.45);
+}
+
+.cuenta__num {
+  font-weight: 600;
+  font-size: clamp(1.75rem, 8.2vw, 2.25rem);
+  line-height: 1;
+  color: var(--fucsia);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.cuenta__etiqueta {
+  margin-top: 0.25rem;
+  font-family: var(--f-mayus);
+  font-weight: 600;
+  font-size: 0.56rem;
+  letter-spacing: 0.18em;
+  padding-left: 0.18em;
+  text-transform: uppercase;
+  color: var(--ciruela);
+}
+
+.cuenta__fin {
+  font-family: var(--f-script);
+  font-size: 2.1rem;
+  color: var(--fucsia);
+}
+
+/* Hora y lugar */
+.detalles__rama {
+  width: 19%;
+  opacity: 0.95;
+}
+
+.detalles__rama--izq {
+  left: -3%;
+  top: -14%;
+}
+
+.detalles__rama--der {
+  right: -3%;
+  bottom: -10%;
+}
+
+.detalles__grilla {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: start;
+  gap: 0.9rem;
+  max-width: 23rem;
+  margin-inline: auto;
+}
+
+.detalles__linea {
+  align-self: stretch;
+  width: 1px;
+  background: linear-gradient(180deg, rgba(201, 164, 92, 0), var(--oro) 25%, var(--oro) 75%, rgba(201, 164, 92, 0));
+}
+
+.detalle__icono {
+  display: grid;
+  place-items: center;
+  width: 3.3rem;
+  height: 3.3rem;
+  margin: 0 auto 0.85rem;
+  border-radius: 50%;
+  color: var(--fucsia);
+  background: rgba(255, 255, 255, 0.55);
+  box-shadow: inset 0 0 0 1.2px rgba(184, 21, 95, 0.5);
+}
+
+.detalle__icono .icono {
+  width: 1.65rem;
+  height: 1.65rem;
+}
+
+.detalle__dato {
+  margin-top: 0.45rem;
+  font-weight: 600;
+  font-size: 2.2rem;
+  line-height: 1;
+}
+
+.detalle__nota {
+  font-family: var(--f-script);
+  font-size: 1.75rem;
+  line-height: 1.15;
+  color: var(--fucsia);
+}
+
+.detalle__lugar {
+  margin-top: 0.45rem;
+  font-weight: 600;
+  font-size: 1.3rem;
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+.detalle__direccion {
+  margin-top: 0.3rem;
+  font-size: 1.05rem;
+  line-height: 1.3;
+  color: var(--tinta-suave);
+}
+
+.boton-linea {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  min-height: 3rem;
+  margin-top: 2.2rem;
+  padding: 0.75rem 1.5rem 0.75rem 1.3rem;
+  border-radius: 999px;
+  font-family: var(--f-mayus);
+  font-weight: 600;
+  font-size: 0.8rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--fucsia);
+  background: rgba(255, 255, 255, 0.65);
+  box-shadow:
+    inset 0 0 0 1px var(--oro),
+    0 8px 20px -10px rgba(158, 15, 80, 0.4);
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s var(--suave);
+}
+
+.boton-linea .icono {
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+.boton-linea:active {
+  transform: scale(0.98);
+}
+
+@media (hover: hover) {
+  .boton-linea:hover {
+    background: #fff;
+  }
+}
+
+/* Información extra (dress code, regalos) */
+.extra__titulo {
+  font-family: var(--f-script);
+  font-weight: 400;
+  font-size: 2.1rem;
+  color: var(--fucsia);
+}
+
+.extra__texto {
+  max-width: 26ch;
+  margin: 0.4rem auto 0;
+  font-size: 1.25rem;
+  text-wrap: balance;
+}
+
+.extra__separador {
+  margin: 2rem auto;
+}
+
+/* Confirmación */
+.pincel {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  margin: 0 auto 1.5rem;
+  padding: 1rem 1.7rem 1.25rem;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.pincel__fondo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.pincel__texto {
+  position: relative;
+  font-family: var(--f-script);
+  font-size: clamp(1.55rem, 7.4vw, 2.35rem);
+  line-height: 1.1;
+  color: var(--fucsia);
+  text-shadow: 0 1.5px 0 rgba(255, 255, 255, 0.7);
+}
+
+.confirmacion__texto {
+  max-width: 25ch;
+  margin-inline: auto;
+  font-size: 1.28rem;
+  line-height: 1.45;
+  text-wrap: balance;
+}
+
+.confirmacion__pregunta {
+  margin: 0.7rem 0 1.8rem;
+  font-family: var(--f-script);
+  font-size: 2.1rem;
+  color: var(--fucsia);
+}
+
+.boton-whatsapp {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  width: min(100%, 22rem);
+  min-height: 3.6rem;
+  padding: 0.9rem 1.1rem;
+  border-radius: 999px;
+  overflow: hidden;
+  font-weight: 600;
+  font-size: clamp(1.02rem, 4.6vw, 1.22rem);
+  line-height: 1.2;
+  text-align: center;
+  text-wrap: balance;
+  text-decoration: none;
+  color: #fff;
+  background: linear-gradient(135deg, #c62470 0%, #a8125a 55%, #8e0c49 100%);
+  box-shadow:
+    inset 0 0 0 1px rgba(241, 221, 165, 0.75),
+    inset 0 0 0 4px rgba(255, 255, 255, 0.07),
+    0 16px 30px -14px rgba(126, 12, 64, 0.7);
+  transition: transform 0.3s var(--suave);
+}
+
+.boton-whatsapp .icono {
+  flex: none;
+  width: 1.45rem;
+  height: 1.45rem;
+}
+
+/* Un reflejo de luz que cruza el botón de vez en cuando */
+.boton-whatsapp::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    rgba(255, 255, 255, 0) 35%,
+    rgba(255, 255, 255, 0.28) 50%,
+    rgba(255, 255, 255, 0) 65%
+  );
+  transform: translateX(-120%);
+  animation: reflejo 6s ease-in-out 2s infinite;
+}
+
+.boton-whatsapp:active {
+  transform: scale(0.98);
+}
+
+.boton-whatsapp:focus-visible {
+  outline-offset: 4px;
+}
+
+.confirmacion__pronto {
+  font-style: italic;
+  color: var(--tinta-suave);
+}
+
+.confirmacion__limite {
+  margin-top: 1.1rem;
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--tinta-suave);
+}
+
+/* Cierre */
+.cierre {
+  position: relative;
+  padding: 2.5rem 1.5rem clamp(13rem, 62vw, 15rem);
+  text-align: center;
+}
+
+.cierre__frase {
+  font-family: var(--f-script);
+  font-size: clamp(2.2rem, 10vw, 2.8rem);
+  line-height: 1.15;
+  color: var(--fucsia);
+  text-wrap: balance;
+}
+
+.cierre__separador {
+  margin: 1.2rem auto 0.6rem;
+}
+
+.cierre__firma {
+  display: inline-block;
+  font-size: 3.4rem;
+  padding: 0.1em 0.3em 0.2em;
+}
+
+.cierre__fecha {
+  margin-top: 0.2rem;
+  font-size: 0.68rem;
+}
+
+.cierre__rosa {
+  bottom: 0;
+  width: 32%;
+}
+
+.cierre__rosa--izq {
+  left: 0;
+}
+
+.cierre__rosa--der {
+  right: 0;
+}
+
+/* ── Botón de música ────────────────────────────────────────── */
+
+.boton-musica {
+  position: fixed;
+  top: max(0.9rem, env(safe-area-inset-top));
+  right: max(0.9rem, env(safe-area-inset-right));
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  width: 2.9rem;
+  height: 2.9rem;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  color: var(--fucsia);
+  background: rgba(255, 255, 255, 0.78);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  box-shadow:
+    inset 0 0 0 1px var(--oro),
+    0 8px 18px -8px rgba(126, 12, 64, 0.45);
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s ease 0.4s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.boton-musica[hidden] {
+  display: none;
+}
+
+.abierta .boton-musica,
+.musica-sonando .boton-musica {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.boton-musica__nota {
+  width: 1.25rem;
+  height: 1.25rem;
+  grid-area: 1 / 1;
+}
+
+.boton-musica__barras {
+  grid-area: 1 / 1;
+  display: none;
+  align-items: flex-end;
+  gap: 3px;
+  height: 1rem;
+}
+
+.boton-musica__barras i {
+  width: 3px;
+  height: 100%;
+  border-radius: 2px;
+  background: currentColor;
+  transform-origin: bottom;
+  animation: barra 1.1s ease-in-out infinite;
+}
+
+.boton-musica__barras i:nth-child(2) {
+  animation-delay: -0.4s;
+}
+
+.boton-musica__barras i:nth-child(3) {
+  animation-delay: -0.75s;
+}
+
+.boton-musica.sonando .boton-musica__nota {
+  display: none;
+}
+
+.boton-musica.sonando .boton-musica__barras {
+  display: flex;
+}
+
+/* ── Destellos y mariposas ──────────────────────────────────── */
+
+.destellos {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.destello {
+  position: absolute;
+  height: auto;
+  opacity: 0.6;
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.95));
+  animation: titilar var(--duracion, 4s) ease-in-out var(--retraso, 0s) infinite both;
+}
+
+.mariposa {
+  animation: revoloteo 7s ease-in-out infinite;
+}
+
+/* ── Entrada de la portada (después de abrir el sobre) ──────── */
+
+.js .portada__corona,
+.js .xv,
+.js .portada__separador,
+.js .portada__seguir {
+  animation: aparecer 1.2s var(--suave) both paused;
+}
+
+.js .portada__corona {
+  animation-name: bajar-corona;
+  animation-delay: 1.05s;
+}
+
+.js .nombre {
+  animation:
+    escribir 2.3s cubic-bezier(0.45, 0.05, 0.35, 1) 1.35s both paused,
+    brillo 9s ease-in-out 4s infinite paused;
+}
+
+.js .nombre__corazon path {
+  stroke-dashoffset: 1;
+  animation: dibujar 1.4s ease-out 3.4s forwards paused;
+}
+
+.js .xv {
+  animation-delay: 2.9s;
+}
+
+.js .portada__separador {
+  animation-delay: 3.2s;
+}
+
+.js .portada__seguir {
+  animation-delay: 3.8s;
+}
+
+.js .portada__img {
+  animation: enfocar 2.4s var(--suave) 0.3s both paused;
+}
+
+html.abriendo .portada *,
+html.abierta .portada * {
+  animation-play-state: running;
+}
+
+/* ── Aparición al deslizar ──────────────────────────────────── */
+
+.js [data-revelar] {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 1s var(--suave) var(--retraso, 0s),
+    transform 1.1s var(--suave) var(--retraso, 0s);
+}
+
+.js [data-revelar].visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ── Animaciones ────────────────────────────────────────────── */
+
+@keyframes latido {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.045);
+  }
+}
+
+@keyframes romper {
+  to {
+    transform: scale(1.3);
+    opacity: 0;
+  }
+}
+
+@keyframes escribir {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes brillo {
+  0%,
+  60%,
+  100% {
+    background-position:
+      0 0,
+      3px 2px,
+      100% 0;
+  }
+  80% {
+    background-position:
+      0 0,
+      3px 2px,
+      0% 0;
+  }
+}
+
+@keyframes dibujar {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes bajar-corona {
+  from {
+    opacity: 0;
+    transform: translateY(-14px) scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes enfocar {
+  from {
+    opacity: 0.4;
+    transform: scale(1.04);
+    filter: blur(3px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+@keyframes bajar {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+}
+
+@keyframes titilar {
+  0%,
+  100% {
+    opacity: 0.15;
+    transform: scale(0.55) rotate(0deg);
+  }
+  50% {
+    opacity: 0.95;
+    transform: scale(1) rotate(45deg);
+  }
+}
+
+@keyframes revoloteo {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate(-4px, -9px) rotate(-4deg);
+  }
+}
+
+@keyframes reflejo {
+  0%,
+  70% {
+    transform: translateX(-120%);
+  }
+  100% {
+    transform: translateX(120%);
+  }
+}
+
+@keyframes barra {
+  0%,
+  100% {
+    transform: scaleY(0.35);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+/* ── Escritorio y tablet: la invitación como tarjeta ────────── */
+
+@media (min-width: 48rem) {
+  body::before {
+    background:
+      radial-gradient(circle at 12% 16%, rgba(255, 255, 255, 0.6) 0, rgba(255, 255, 255, 0) 3rem),
+      radial-gradient(circle at 88% 12%, rgba(255, 255, 255, 0.5) 0, rgba(255, 255, 255, 0) 4rem),
+      radial-gradient(circle at 82% 70%, rgba(255, 255, 255, 0.45) 0, rgba(255, 255, 255, 0) 3.4rem),
+      radial-gradient(circle at 10% 82%, rgba(255, 255, 255, 0.45) 0, rgba(255, 255, 255, 0) 4.4rem),
+      linear-gradient(180deg, #f9d6de 0%, #f4c3cf 100%);
+  }
+
+  .invitacion {
+    margin-block: 3rem;
+    border-radius: 2.4rem;
+    background:
+      radial-gradient(120% 40% at 50% 0%, var(--niebla), rgba(255, 244, 246, 0) 70%),
+      linear-gradient(180deg, #fdedf1 0%, #fbdde3 50%, #f9d6de 100%);
+    box-shadow:
+      0 0 0 1px rgba(201, 164, 92, 0.4),
+      0 50px 90px -45px rgba(126, 12, 64, 0.5);
+  }
+
+  .portada {
+    min-height: auto;
+  }
+
+  .portada__foto {
+    max-height: none;
+  }
+}
+
+/* ── Movimiento reducido ────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-delay: 0s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    transition-delay: 0s !important;
+  }
+
+  .boton-whatsapp::after {
+    display: none;
+  }
+
+  .apertura {
+    transition: opacity 0.4s linear !important;
+  }
+
+  .abriendo .apertura {
+    opacity: 0;
+  }
+
+  .abriendo .apertura__hoja--izq,
+  .abriendo .apertura__hoja--der {
+    transform: none;
+  }
+}

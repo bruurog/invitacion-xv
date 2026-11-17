@@ -1,0 +1,43 @@
+---
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
+import Base from '../layouts/Base.astro';
+import Defs from '../components/Defs.astro';
+import Apertura from '../components/Apertura.astro';
+import Portada from '../components/Portada.astro';
+import Frase from '../components/Frase.astro';
+import Fecha from '../components/Fecha.astro';
+import Detalles from '../components/Detalles.astro';
+import Extras from '../components/Extras.astro';
+import Confirmacion from '../components/Confirmacion.astro';
+import Cierre from '../components/Cierre.astro';
+import BotonMusica from '../components/BotonMusica.astro';
+import { musica } from '../config';
+
+// La música es opcional: si el archivo no está en public/, no se agrega.
+const conMusica = Boolean(musica.archivo) && existsSync(join(process.cwd(), 'public', musica.archivo));
+if (!conMusica) {
+  console.warn(`[invitacion] No encontré public${musica.archivo}: la invitación se publica sin música.`);
+}
+---
+
+<Base>
+  <Defs />
+  <Apertura conMusica={conMusica} />
+  {conMusica && <BotonMusica />}
+
+  <main class="invitacion" id="contenido">
+    <Portada />
+    <Frase />
+    <Fecha />
+    <Detalles />
+    <Extras />
+    <Confirmacion />
+    <Cierre />
+  </main>
+</Base>
+
+<script>
+  import { iniciarInvitacion } from '../scripts/invitacion';
+  iniciarInvitacion();
+</script>

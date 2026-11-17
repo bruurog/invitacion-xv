@@ -1,0 +1,71 @@
+---
+// Pantalla de bienvenida: un sobre lacrado que se abre al tocar el sello.
+// El toque también habilita la música en todos los navegadores.
+import { Image } from 'astro:assets';
+import corona from '../assets/adornos/corona.webp';
+import Destellos from './Destellos.astro';
+import Separador from './Separador.astro';
+import { evento } from '../config';
+
+interface Props {
+  conMusica: boolean;
+}
+const { conMusica } = Astro.props;
+
+// Borde ondulado del lacre
+const lobulos = 16;
+const pasos = 192;
+const puntos = Array.from({ length: pasos }, (_, i) => {
+  const a = (i / pasos) * Math.PI * 2;
+  const r = 46 + 2.6 * Math.sin(a * lobulos) + 0.9 * Math.sin(a * 7 + 1);
+  return `${(50 + r * Math.cos(a)).toFixed(2)} ${(50 + r * Math.sin(a)).toFixed(2)}`;
+});
+const bordeLacre = `M${puntos.join(' L')} Z`;
+---
+
+<div
+  class="apertura"
+  id="apertura"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="apertura-titulo"
+  aria-describedby="apertura-nota"
+>
+  <div class="apertura__hoja apertura__hoja--izq" aria-hidden="true"></div>
+  <div class="apertura__hoja apertura__hoja--der" aria-hidden="true"></div>
+
+  <div class="apertura__contenido">
+    <Destellos
+      puntos={[
+        [12, 14, 14],
+        [84, 10, 10],
+        [70, 26, 16],
+        [20, 38, 9],
+        [88, 46, 12],
+        [8, 64, 15],
+        [78, 72, 10],
+        [30, 86, 12],
+        [62, 90, 14],
+      ]}
+    />
+    <p class="apertura__aviso">Tenés una invitación especial</p>
+    <Image src={corona} alt="" class="apertura__corona" width={210} loading="eager" />
+    <p class="apertura__nombre caligrafia" id="apertura-titulo">{evento.quinceanera}</p>
+    <p class="apertura__xv">{evento.titulo}</p>
+    <Separador class="apertura__separador" />
+
+    <button class="sello" id="abrir" type="button">
+      <svg class="sello__cera" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+        <path d={bordeLacre} fill="url(#g-cera)" />
+        <circle cx="50" cy="50" r="35" fill="none" stroke="#fff" stroke-opacity=".28" stroke-width="1.2" />
+        <circle cx="50" cy="50" r="31.5" fill="none" stroke="url(#g-oro)" stroke-width=".9" />
+        <text x="50" y="66" text-anchor="middle" class="sello__inicial" fill="url(#g-oro)">D</text>
+      </svg>
+      <span class="sello__texto">Abrir mi invitación</span>
+    </button>
+
+    <p class="apertura__nota" id="apertura-nota">
+      {conMusica ? 'Tocá el sello · con música' : 'Tocá el sello para abrirla'}
+    </p>
+  </div>
+</div>

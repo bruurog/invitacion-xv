@@ -1,0 +1,42 @@
+---
+import Icono from './Icono.astro';
+import { confirmacion } from '../config';
+
+const numero = confirmacion.whatsapp.replace(/\D/g, '');
+const enlace = numero ? `https://wa.me/${numero}?text=${encodeURIComponent(confirmacion.mensaje)}` : '';
+
+if (!numero) {
+  console.warn('[invitacion] Falta el número de WhatsApp en src/config.ts: el botón de confirmar no se muestra.');
+}
+---
+
+<section class="seccion confirmacion" aria-labelledby="confirmacion-titulo">
+  <h2 class="pincel" id="confirmacion-titulo" data-revelar>
+    <svg class="pincel__fondo" viewBox="0 0 320 84" aria-hidden="true" focusable="false" preserveAspectRatio="none">
+      <path
+        d="M16 28 C70 18 150 20 300 15 L314 20 L302 25 L318 31 C304 50 232 60 160 62 C100 64 52 67 20 61 L6 55 L17 49 L3 42 L15 36 Z"
+        fill="url(#g-pincel)"></path>
+      <path d="M30 30 C120 24 210 22 296 20" stroke="#fff" stroke-opacity=".45" stroke-width="1.4" fill="none"></path>
+      <path d="M26 54 C110 58 200 54 290 40" stroke="#E68DB0" stroke-opacity=".5" stroke-width="1.2" fill="none"></path>
+      <path d="M40 44 C130 40 220 40 300 32" stroke="#fff" stroke-opacity=".25" stroke-width="3" fill="none"></path>
+    </svg>
+    <span class="pincel__texto">Confirmar asistencia</span>
+  </h2>
+
+  <p class="confirmacion__texto" data-revelar style="--retraso: .1s">{confirmacion.texto}</p>
+  <p class="confirmacion__pregunta" data-revelar style="--retraso: .2s">{confirmacion.pregunta}</p>
+
+  {
+    enlace ? (
+      <a class="boton-whatsapp" href={enlace} target="_blank" rel="noopener" data-revelar style="--retraso: .3s">
+        <Icono nombre="whatsapp" />
+        <span>Confirmar asistencia por WhatsApp</span>
+      </a>
+    ) : (
+      <p class="confirmacion__pronto" data-revelar style="--retraso: .3s">
+        Muy pronto vas a poder confirmar desde acá.
+      </p>
+    )
+  }
+  {confirmacion.fechaLimite && <p class="confirmacion__limite">{confirmacion.fechaLimite}</p>}
+</section>

@@ -1,0 +1,55 @@
+---
+import { evento } from '../config';
+
+const fecha = new Date(evento.fechaISO);
+const formato = (opciones: Intl.DateTimeFormatOptions) =>
+  new Intl.DateTimeFormat('es-AR', { timeZone: 'America/Argentina/Buenos_Aires', ...opciones }).format(fecha);
+const mayuscula = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+
+const diaSemana = formato({ weekday: 'long' });
+const dia = formato({ day: 'numeric' });
+const mes = mayuscula(formato({ month: 'long' }));
+const anio = formato({ year: 'numeric' });
+
+const unidades = [
+  { clave: 'dias', etiqueta: 'Días' },
+  { clave: 'horas', etiqueta: 'Horas' },
+  { clave: 'minutos', etiqueta: 'Min' },
+  { clave: 'segundos', etiqueta: 'Seg' },
+];
+---
+
+<section class="seccion fecha" aria-labelledby="fecha-titulo">
+  <p class="eyebrow" data-revelar>{diaSemana}</p>
+  <h2 class="fecha__dia" id="fecha-titulo" data-revelar style="--retraso: .1s">
+    {dia} de {mes}
+    <span class="sr-only"> de {anio}</span>
+  </h2>
+  <svg class="fecha__trazo" viewBox="0 0 260 28" aria-hidden="true" focusable="false" data-revelar style="--retraso: .2s">
+    <path
+      d="M8 17 C56 9 104 24 150 15 C186 8 214 9 236 14 C244 16 250 13 252 9"
+      fill="none"
+      stroke="url(#g-oro)"
+      stroke-width="1.6"
+      stroke-linecap="round"></path>
+    <path d="M118 21 C128 25 140 25 150 21" fill="none" stroke="url(#g-oro)" stroke-width="1" stroke-linecap="round"></path>
+  </svg>
+  <p class="eyebrow fecha__anio" aria-hidden="true" data-revelar style="--retraso: .25s">{anio}</p>
+
+  <div class="cuenta" data-revelar style="--retraso: .3s">
+    <p class="cuenta__titulo">Faltan</p>
+    <div class="cuenta__fila" role="timer" aria-live="off" aria-label="Tiempo que falta para la fiesta" data-cuenta={evento.fechaISO}>
+      {
+        unidades.map((u) => (
+          <div class="cuenta__unidad">
+            <span class="cuenta__num" data-unidad={u.clave}>
+              --
+            </span>
+            <span class="cuenta__etiqueta">{u.etiqueta}</span>
+          </div>
+        ))
+      }
+    </div>
+    <p class="cuenta__fin" hidden>¡Llegó la gran noche!</p>
+  </div>
+</section>

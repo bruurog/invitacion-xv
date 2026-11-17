@@ -1,0 +1,71 @@
+---
+import { Image, Picture } from 'astro:assets';
+import foto from '../assets/delfina-recorte.png';
+import corona from '../assets/adornos/corona.webp';
+import ramaIzq from '../assets/adornos/rama-sup-izq.webp';
+import ramaDer from '../assets/adornos/rama-sup-der.webp';
+import mariposaIzq from '../assets/adornos/mariposa-izq.webp';
+import mariposaDer from '../assets/adornos/mariposa-der.webp';
+import Destellos from './Destellos.astro';
+import Separador from './Separador.astro';
+import Icono from './Icono.astro';
+import { evento } from '../config';
+---
+
+<header class="portada">
+  <div class="portada__foto">
+    <div class="portada__halo" aria-hidden="true"></div>
+    <Picture
+      src={foto}
+      alt={`${evento.quinceanera}, con anteojos y el pelo suelto, iluminada por el sol`}
+      formats={['avif', 'webp']}
+      widths={[420, 640, 860, 1086]}
+      sizes="(min-width: 34rem) 34rem, 100vw"
+      loading="eager"
+      fetchpriority="high"
+      fallbackFormat="webp"
+      class="portada__img"
+    />
+    <Image src={ramaIzq} alt="" class="adorno portada__rama portada__rama--izq" width={250} loading="eager" />
+    <Image src={ramaDer} alt="" class="adorno portada__rama portada__rama--der" width={256} loading="eager" />
+    <Image src={mariposaDer} alt="" class="adorno mariposa portada__mariposa--der" width={280} loading="eager" />
+    <Image src={mariposaIzq} alt="" class="adorno mariposa portada__mariposa--izq" width={304} loading="eager" />
+    <Destellos
+      puntos={[
+        [10, 8, 12],
+        [88, 6, 9],
+        [74, 24, 15],
+        [18, 30, 10],
+        [92, 42, 11],
+        [6, 50, 14],
+        [70, 60, 9],
+      ]}
+    />
+  </div>
+
+  <div class="portada__titulo">
+    <Image src={corona} alt="" class="portada__corona" width={420} loading="eager" />
+    <h1 class="titulo-principal">
+      <span class="nombre caligrafia" id="nombre">
+        {evento.quinceanera}
+        <svg class="nombre__corazon" viewBox="0 0 84 52" aria-hidden="true" focusable="false">
+          <path
+            pathLength="1"
+            d="M2 44 C20 46 40 46 57 41 C49 34 40 26 42 17 C43.6 10 52 8.6 57.6 15.4 C63.6 8.6 72.4 10 74 17 C76 26 66 34 57 41 C62 45 70 48 82 46"
+            fill="none"
+            stroke="url(#g-fucsia)"
+            stroke-width="2.4"
+            stroke-linecap="round"
+            stroke-linejoin="round"></path>
+        </svg>
+      </span>
+      <span class="xv">{evento.titulo}</span>
+    </h1>
+    <Separador class="portada__separador" />
+  </div>
+
+  <a class="portada__seguir" href="#invitacion">
+    <span>Deslizá</span>
+    <Icono nombre="flecha" />
+  </a>
+</header>

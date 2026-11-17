@@ -1,0 +1,10 @@
+---
+import Separador from './Separador.astro';
+import { evento } from '../config';
+---
+
+<section class="seccion frase" id="invitacion" aria-label="Invitación">
+  <p class="frase__principal" data-revelar>{evento.frase}</p>
+  <Separador class="frase__separador" />
+  <p class="frase__secundaria" data-revelar style="--retraso: .15s">{evento.fraseSecundaria}</p>
+</section>

@@ -1,0 +1,19 @@
+---
+// Dress code, regalos u otra información. Solo aparece si está cargada en config.ts.
+import Separador from './Separador.astro';
+import { extras } from '../config';
+---
+
+{
+  extras.length > 0 && (
+    <section class="seccion extras" aria-label="Información para la noche">
+      {extras.map((extra, i) => (
+        <div class="extra" data-revelar style={`--retraso: ${i * 0.1}s`}>
+          <h2 class="extra__titulo">{extra.titulo}</h2>
+          <p class="extra__texto">{extra.texto}</p>
+          {i < extras.length - 1 && <Separador class="extra__separador" />}
+        </div>
+      ))}
+    </section>
+  )
+}

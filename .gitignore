@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.astro/
+.vercel/
+.env
+.env.*
+.DS_Store
+Thumbs.db
+.claude/
+
+# Fotos originales: no se publican (la web usa src/assets/delfina-recorte.png)
+img/delfi/

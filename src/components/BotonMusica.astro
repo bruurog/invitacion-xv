@@ -1,0 +1,10 @@
+---
+import Icono from './Icono.astro';
+import { musica } from '../config';
+---
+
+<audio id="musica" src={musica.archivo} preload="none" loop data-volumen={musica.volumen}></audio>
+<button class="boton-musica" id="boton-musica" type="button" aria-pressed="false" aria-label="Reproducir música" hidden>
+  <Icono nombre="nota" class="boton-musica__nota" />
+  <span class="boton-musica__barras" aria-hidden="true"><i></i><i></i><i></i></span>
+</button>

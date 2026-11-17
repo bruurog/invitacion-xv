@@ -1,0 +1,41 @@
+---
+import { Image } from 'astro:assets';
+import ramaIzq from '../assets/adornos/rama-media-izq.webp';
+import ramaDer from '../assets/adornos/rama-media-der.webp';
+import Icono from './Icono.astro';
+import { evento } from '../config';
+
+const { lugar } = evento;
+const busqueda = [lugar.nombre, lugar.direccion].filter(Boolean).join(', ');
+const mapsUrl =
+  lugar.mapsUrl || `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(busqueda)}`;
+---
+
+<section class="seccion detalles" aria-labelledby="detalles-titulo">
+  <Image src={ramaIzq} alt="" class="adorno detalles__rama detalles__rama--izq" width={236} loading="lazy" />
+  <Image src={ramaDer} alt="" class="adorno detalles__rama detalles__rama--der" width={236} loading="lazy" />
+
+  <h2 class="sr-only" id="detalles-titulo">Hora y lugar</h2>
+  <div class="detalles__grilla">
+    <div class="detalle" data-revelar>
+      <span class="detalle__icono"><Icono nombre="reloj" /></span>
+      <p class="eyebrow">Hora</p>
+      <p class="detalle__dato">{evento.hora}</p>
+      <p class="detalle__nota">{evento.notaHora}</p>
+    </div>
+
+    <span class="detalles__linea" aria-hidden="true"></span>
+
+    <div class="detalle" data-revelar style="--retraso: .15s">
+      <span class="detalle__icono"><Icono nombre="pin" /></span>
+      <p class="eyebrow">Lugar</p>
+      <p class="detalle__lugar">{lugar.nombre}</p>
+      {lugar.direccion && <p class="detalle__direccion">{lugar.direccion}</p>}
+    </div>
+  </div>
+
+  <a class="boton-linea" href={mapsUrl} target="_blank" rel="noopener" data-revelar style="--retraso: .25s">
+    <Icono nombre="pin" />
+    Cómo llegar
+  </a>
+</section>
